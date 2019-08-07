@@ -3,7 +3,11 @@ from bs4 import BeautifulSoup as BS
 
 def getStock(isbn):
     url = 'http://www.kyobobook.co.kr/prom/2013/general/StoreStockTable.jsp?barcode=' + isbn + '&ejkgb=KOR'
-    res = requests.get(url)
+    headers = {
+        'referer' : 'http://www.naver.com',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    }
+    res = requests.get(url, headers=headers)
     soup = BS(res.text, 'html.parser')
     store = soup.select('th')
     num = soup.select('a')
