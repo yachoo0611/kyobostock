@@ -17,5 +17,6 @@ def result(request):
     i = request.POST.get('isbn')
     print(i)
     stock = api_engine.getStock(i)
-    context = {'stock': stock}
+    #context = {'stock': stock}
+    context = {'stock': 'abcd'}
     return render(request, 'search/result.html', context)
