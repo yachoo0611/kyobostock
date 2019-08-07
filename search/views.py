@@ -13,8 +13,8 @@ def select(request):
     context = {'b': book}
     return render(request, 'search/select.html', context)
 
-def result(request, isbn):
-    i = str(isbn)
+def result(request):
+    i = request.POST.get('isbn')
     stock = api_engine.getStock(i)
     context = {'stock': stock}
     return render(request, 'search/result.html', context)
