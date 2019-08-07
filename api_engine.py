@@ -11,8 +11,6 @@ def getStock(isbn):
     store = soup.select('th')
     num = soup.select('a')
     kb = {}
-    # stock[0] : 지점명 리스트
-    # stock[1] : 재고수량 리스트
     for i, j in zip(store, num):
         i = i.text
         i = i.strip()
@@ -38,7 +36,6 @@ def bookInfo(title):
     else:
         print("Error Code:" + resCode)
         # res.raise_for_status()  200 아니면 오류
-
 
 if __name__ == "__main__":
     title = input("도서명을 입력하세요 : ")
