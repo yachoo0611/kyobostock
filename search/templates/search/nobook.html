@@ -1,0 +1,9 @@
+<html>
+    <h1>Error! 책 제목을 제대로 입력해주세요</h1>
+    <form action="/search/find/" method="post">
+        {% csrf_token %}
+        <label>책의 제목을 입력하세요</label>
+        <input type="search" name="title">
+        <input type="submit" value="검색">
+    </form>
+</html>

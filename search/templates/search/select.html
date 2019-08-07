@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <ul>
+        {% for book in b %}
+            <li>{{ book.title }}</li>
+            <li>{{ book.author }}</li>
+            <li>{{ book.publisher }}</li>
+            <li>{{ book.price }}원</li>
+            <li><img src={{ book.image }}></li>
+            <form action="/{{ book.isbn }}/result/" method="post">
+                {% csrf_token %}
+                <input type="submit" value="재고보기">
+            </form>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

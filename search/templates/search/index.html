@@ -1,0 +1,8 @@
+<html>
+    <form action="/select/" method="post">
+        {% csrf_token %}
+        <label>책의 제목을 입력하세요</label>
+        <input type="search" name="title">
+        <input type="submit" value="검색">
+    </form>
+</html>
