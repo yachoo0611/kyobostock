@@ -18,7 +18,7 @@ def getStock(isbn):
             pass
         else:
             kb[i] = j.text
-    return kb
+    return url
 
 def bookInfo(title):
     clientId = "BsGqKYMK02FYfiAaMGCh"
