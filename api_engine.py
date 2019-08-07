@@ -2,10 +2,7 @@ import requests
 from bs4 import BeautifulSoup as BS
 
 def getStock(isbn):
-    try:
-        url = 'http://www.kyobobook.co.kr/prom/2013/general/StoreStockTable.jsp?barcode=' + isbn + '&ejkgb=KOR'
-    except:
-        return ''
+    url = 'http://www.kyobobook.co.kr/prom/2013/general/StoreStockTable.jsp?barcode=' + isbn + '&ejkgb=KOR'
     res = requests.get(url)
     soup = BS(res.text, 'html.parser')
     store = soup.select('th')
