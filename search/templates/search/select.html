@@ -7,9 +7,8 @@
             <li>{{ book.publisher }}</li>
             <li>{{ book.price }}원</li>
             <li><img src={{ book.image }}></li>
-            <form action="/result/" method="post">
+            <form action="/{{ book.isbn }}/result/" method="post">
                 {% csrf_token %}
-                <input type="text" name="isbn" value="{{ book.isbn }}">
                 <input type="submit" value="재고보기">
             </form>
         {% endfor %}

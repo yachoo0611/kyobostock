@@ -7,15 +7,15 @@ def getStock(isbn):
     soup = BS(res.text, 'html.parser')
     store = soup.select('th')
     num = soup.select('a')
-    kb = {}
+    stock = {}
     for i, j in zip(store, num):
         i = i.text
         i = i.strip()
         if i == '':
             pass
         else:
-            kb[i] = j.text
-    return url
+            stock[i] = j.text
+    return stock
 
 def bookInfo(title):
     clientId = "BsGqKYMK02FYfiAaMGCh"
