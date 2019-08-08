@@ -9,7 +9,12 @@ def index(request):
 
 def select(request):
     t = request.POST.get('title')
+    if t == '':
+        return render(request,'search/nobook.html')
     book = api_engine.bookInfo(t)
+    print(book)
+    if book == []:
+        return render(request,'search/nobook.html')
     context = {'b': book}
     return render(request, 'search/select.html', context)
 
