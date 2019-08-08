@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8"/>
 	<title>test</title>
 	<style type="text/css">
 	ul {
@@ -10,30 +11,22 @@
 		margin:0;
 		padding:0;
 	}
-
-	li {
-		/* display:inline; */
-		text-align: center;
-		border-left: 1px solid #999;             /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */
-		border-bottom: 1px solid #999;
-		font: bold 12px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
-		padding: 5px 10px;                         /* 각 메뉴 간격 */
-	}
 	</style>
 </head>
 <body>
 	<div>
-		<!-- <ul>
-			{% for s in stock.keys %}
-				<li>{{ s }}</li>
-			{% endfor %}
-		</ul>
-		<ul>
-			{% for i in stock.values %}
-				<li>{{ i }}</li>
-			{% endfor %}
-        </ul> -->
-        {{ stock }}
+		<table>
+            <tr>
+                {% for s in stock.keys %}
+                    <th>{{ s }}</th>    
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for i in stock.values %}
+                    <td>{{ i }}</td>    
+                {% endfor %}
+            </tr>
+        </table>
 	</div>
 
 
