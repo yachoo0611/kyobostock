@@ -12,7 +12,6 @@ def select(request):
     if t == '':
         return render(request,'search/nobook.html')
     book = api_engine.bookInfo(t)
-    print(book)
     if book == []:
         return render(request,'search/nobook.html')
     context = {'b': book}

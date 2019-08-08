@@ -1,26 +1,60 @@
+{% load static %}
 <html>
     <head>
         <title>Where is the Book?</title>
         <style>
+            *{
+                font-family: 'Nanum Myeongjo', serif;
+                margin: 0;
+                padding: 0;
+            }
+            #wrap{
+                width: 100%;
+                text-align: center;
+                margin: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            #search{
+                display: inline;
+                width: auto;
+                text-align: center;
+            }
             #notice{
                 color:gray;
                 font-size: 12px;
             }
+            label{
+                padding:5px;
+            }
         </style>
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     </head>
     <body>
-        <h2>교보문고 재고 검색기</h2>
-        <form action="/select/" method="post">
-            {% csrf_token %}
-            <label>검색할 책의 제목을 입력하세요</label><br/>
-            <input type="search" name="title" required>
-            <input type="submit" value="검색">
+    <div id="wrap">
+        <h2>Where is the Book</h2>
+        <br>
+        <form action="/select/" method="post" class="form-inline">
+            <div class="form-group">
+                {% csrf_token %}
+                <label class="control-label">재고를 검색할 책의 제목을 입력하세요.</label><br>
+                <input type="search" name="title" id="search" class="form-control" required>
+                <button type="submit" class="btn">검색</button>
+            </div>
+            
         </form>
+        
         <br>
         <div id="notice">
         <h4>참고사항</h4>        
-        개발 진행 중입니다. 아직 CSS는 입히지 않았어요.<br>
+        개발 진행 중입니다. 아직 CSS는 입히지 않았습니다.<br>
         건의 사항은 neungyoung.kim@gmail.com으로 보내주시면 감사하겠습니다.
         </div>
-    </body> 
+    </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 </html>
