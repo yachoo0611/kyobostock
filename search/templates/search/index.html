@@ -13,7 +13,7 @@
         <form action="/select/" method="post">
             {% csrf_token %}
             <label>검색할 책의 제목을 입력하세요</label><br/>
-            <input type="search" name="title">
+            <input type="search" name="title" required>
             <input type="submit" value="검색">
         </form>
         <br>
