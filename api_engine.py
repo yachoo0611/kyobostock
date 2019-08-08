@@ -36,10 +36,3 @@ def bookInfo(title):
         i['title'] = t
         i['isbn'] = i['isbn'][11:]
     return book
-
-if __name__ == "__main__":
-    title = input("도서명을 입력하세요 : ")
-    book = bookInfo(title)
-    print(book)
-    stock = getStock(book[0]['isbn'])
-    print(stock)
