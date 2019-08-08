@@ -1,8 +1,21 @@
 <html>
+    <head>
+        <title>검색결과</title>
+        <style>
+        #wrap{
+            width: 100%;
+        }
+        ul{
+            list-style-type: none;
+            padding: 5px 40px;
+        }
+        </style>
+    </head>
     <body>
-        <ul>
+    <div id="wrap">
         {% for book in b %}
-            <li>{{ book.title }}</li>
+        <ul>
+            <li><h3>{{ book.title }}</h3></li>
             <li>{{ book.author }}</li>
             <li>{{ book.publisher }}</li>
             <li>{{ book.price }}원</li>
@@ -12,7 +25,8 @@
                 <!-- <input type="hidden" name="isbn" value="{{ book.isbn }}"> -->
                 <input type="submit" value="재고보기">
             </form>
-        {% endfor %}
         </ul>
+        {% endfor %}
+    </div>
     </body>
 </html>

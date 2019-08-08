@@ -1,11 +1,26 @@
 <html>
-    <h2>교보문고 재고 검색기</h2>
-    <form action="/select/" method="post">
-        {% csrf_token %}
-        <label>검색할 책의 제목을 입력하세요</label>
-        <input type="search" name="title">
-        <input type="submit" value="검색">
-    </form>
-    <p>개발 진행 중입니다. 아직 CSS는 입히지 않았어요.<br>
-    건의 사항은 neungyoung.kim@gmail.com으로 보내주시면 감사하겠습니다.</p>
+    <head>
+        <title>Where is the Book?</title>
+        <style>
+            #notice{
+                color:gray;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>교보문고 재고 검색기</h2>
+        <form action="/select/" method="post">
+            {% csrf_token %}
+            <label>검색할 책의 제목을 입력하세요</label><br/>
+            <input type="search" name="title">
+            <input type="submit" value="검색">
+        </form>
+        <br>
+        <div id="notice">
+        <h4>참고사항</h4>        
+        개발 진행 중입니다. 아직 CSS는 입히지 않았어요.<br>
+        건의 사항은 neungyoung.kim@gmail.com으로 보내주시면 감사하겠습니다.
+        </div>
+    </body> 
 </html>
