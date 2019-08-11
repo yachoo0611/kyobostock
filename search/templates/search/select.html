@@ -6,33 +6,25 @@
     <title>검색결과</title>
     <style>
         *{
-                margin: 0;
-                padding: 0;
+            margin: 0;
+            padding: 0;
         }
-        #wrap{
-            width: 90%;
-            overflow: hidden;
-            margin: auto;
+        body{
+            font-family: 'Nanum Myeongjo', serif;
         }
         ul{
             list-style-type: none;
         }
         .book{
             padding-top: 10px;
-            width: auto;
             height: 200px;
         }
-        .infoWrap{
-            width:100%;
-            height: auto;
-        }
-        .infoWrap>li{
-            float: left
-        }
-        .bookImage{
+        .book>div{
+            display: inline-block;
             vertical-align: middle;
         }
         .bookInfo{
+            font-size: 12px;
             padding-left: 10px;
         }
 
@@ -42,30 +34,25 @@
     </style>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" class="container col-xs-12">
     {% for book in b %}
-    <ul class="book">
-        <li class="title"><h4>{{ book.title }}</h4></li>
-        <li>
-            <ul class="infoWrap">
-                <li class="bookImg"><img src={{ book.image }}></li>
+    <section class="book">
+        <div class="bookImg"><img src={{ book.image }}></div>
+        <div class="bookInfo">
+            <ul>
+                <li><strong><h5>{{ book.title }}</h5></strong></li>
+                <li>작가 : {{ book.author }}</li>
+                <li>출판사 : {{ book.publisher }}</li>
+                <li>가격 : {{ book.price }}원</li>
                 <li>
-                    <ul class="bookInfo">
-                        <li>작가 : {{ book.author }}</li>
-                        <li>출판사 : {{ book.publisher }}</li>
-                        <li>가격 : {{ book.price }}원</li>
-                        <li>
-                            <br>
-                            <form action="/result/{{ book.isbn }}/" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-sm">재고 검색</button>
-                            </form>
-                        </li>
-                    </ul>
+                    <form action="/result/{{ book.isbn }}/" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm">재고 검색</button>
+                    </form>
                 </li>
             </ul>
-        </li>
-    </ul>
+        </div>
+    </section>
     {% endfor %}
 </div>
 </body>

@@ -3,6 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
         <title>Where is the Book?</title>
         <style>
@@ -12,33 +13,6 @@
             }
             body{
                 font-family: 'Nanum Myeongjo', serif;
-            }
-            #wrap{
-                /* width: 100%; */
-                text-align: center;
-                margin: auto;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-50%) translateY(-50%);
-            }
-            #search{
-                display: inline;
-                width: auto;
-                text-align: center;
-                vertical-align: middle;
-            }
-            #notice{
-                color:gray;
-                font-size: 12px;
-            }
-            label{
-                padding:5px;
-            }
-            button[type=submit]{
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
             }
         </style>
     </head>
@@ -58,9 +32,10 @@
             </form>
         </div>
         <div id="notice" class="row">
+            <br>
         <h4>참고사항</h4>
         개발 진행 중입니다. 아직 CSS는 입히지 않았습니다.<br>
-        건의 사항은 neungyoung.kim@gmail.com으로 보내주시면 감사하겠습니다.
+        건의 사항은 neungyoung.kim@gmail.com으로<br>보내주시면 감사하겠습니다.
         </div>
     </div>
     </body>
