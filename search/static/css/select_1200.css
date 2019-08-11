@@ -1,4 +1,7 @@
 @media all and (min-width:400px){
+    #title{
+        color: grey;
+    }
     .book{
         margin: 30px 0;
         width: 100%;
