@@ -14,7 +14,8 @@ def select(request):
     book = api_engine.bookInfo(t)
     if not book:
         return render(request, 'search/nobook.html')
-    context = {'b': book, 'input': t}
+    input = {'title': t}
+    context = {'b': book, 'input': input}
     return render(request, 'search/select.html', context)
 
 
