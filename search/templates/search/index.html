@@ -43,22 +43,21 @@
         </style>
     </head>
     <body>
-    <div id="wrap" class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
-            <div class="visible-xs-block"  style="background-color:#CCCCCC;height:30px;">
-                    이글은 xs의 경우에만 보입니다.
-                    </div>
-        <h2>Where is the Book</h2>
-        <br>
-        <form action="/select/" method="post" class="form-inline">
-            <div class="form-group">
-                {% csrf_token %}
-                <label class="control-label">재고를 검색할 책의 제목을 입력하세요.</label><br>
-                <input type="search" name="title" id="search" class="form-control" required>
-                <button type="submit" class="btn">검색</button>
-            </div>
-        </form>
-        <br>
-        <div id="notice">
+    <div id="wrap" class="container-fluid col-xs-12">
+        <div id="title" class="row">
+            <h2>Where is the Book</h2>
+        </div>
+        <div id="main" class="row">
+            <form action="/select/" method="post" class="form-inline">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <label class="control-label">재고를 검색할 책의 제목을 입력하세요.</label><br>
+                    <input type="search" name="title" id="search" class="form-control" required>
+                    <button type="submit" class="btn">검색</button>
+                </div>
+            </form>
+        </div>
+        <div id="notice" class="row">
         <h4>참고사항</h4>
         개발 진행 중입니다. 아직 CSS는 입히지 않았습니다.<br>
         건의 사항은 neungyoung.kim@gmail.com으로 보내주시면 감사하겠습니다.
