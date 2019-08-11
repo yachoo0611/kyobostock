@@ -4,21 +4,22 @@ from django.http import HttpResponse
 from django.urls import reverse
 import api_engine
 
+
 def index(request):
-    return render(request,'search/index.html')
+    return render(request, 'search/index.html')
+
 
 def select(request):
     t = request.POST.get('title')
-    if t == '':
-        return render(request,'search/nobook.html')
     book = api_engine.bookInfo(t)
-    if book == []:
-        return render(request,'search/nobook.html')
+    if not book:
+        return render(request, 'search/nobook.html')
     context = {'b': book}
     return render(request, 'search/select.html', context)
 
+
 def result(request, isbn):
-    #i = request.POST.get('isbn')
+    # i = request.POST.get('isbn')
     i = str(isbn)
     stock = api_engine.getStock(i)
     context = {'stock': stock}

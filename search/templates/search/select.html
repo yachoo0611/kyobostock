@@ -1,49 +1,74 @@
+{% load static %}
 <html>
-    <head>
-        <title>검색결과</title>
-        <style>
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <title>검색결과</title>
+    <style>
+        *{
+                margin: 0;
+                padding: 0;
+        }
         #wrap{
-            width: 100%;
+            width: 90%;
+            overflow: hidden;
+            margin: auto;
         }
         ul{
             list-style-type: none;
         }
         .book{
             padding-top: 10px;
-            width: 100%;
+            width: auto;
             height: 200px;
+        }
+        .infoWrap{
+            width:100%;
+            height: auto;
         }
         .infoWrap>li{
             float: left
         }
-        </style>
-    </head>
-    <body>
-    <div id="wrap">
-        {% for book in b %}
-        <ul class="book">
-            <li class="title"><h3>{{ book.title }}</h3></li>
-            <li>
-                <ul class="infoWrap">
-                    <li><img src={{ book.image }}></li>
-                    <li>
-                        <ul class="bookInfo">
-                            <li>작가 : {{ book.author }}</li>
-                            <li>출판사 : {{ book.publisher }}</li>
-                            <li>가격 : {{ book.price }}원</li>
-                            <li>
+        .bookImage{
+            vertical-align: middle;
+        }
+        .bookInfo{
+            padding-left: 10px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    {% for book in b %}
+    <ul class="book">
+        <li class="title"><h4>{{ book.title }}</h4></li>
+        <li>
+            <ul class="infoWrap">
+                <li class="bookImg"><img src={{ book.image }}></li>
+                <li>
+                    <ul class="bookInfo">
+                        <li>작가 : {{ book.author }}</li>
+                        <li>출판사 : {{ book.publisher }}</li>
+                        <li>가격 : {{ book.price }}원</li>
+                        <li>
+                            <br>
                             <form action="/result/{{ book.isbn }}/" method="post">
                                 {% csrf_token %}
-                                <!-- <input type="hidden" name="isbn" value="{{ book.isbn }}"> -->
-                                <input type="submit" value="재고보기">
+                                <button type="submit" class="btn btn-sm">재고 검색</button>
                             </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>            
-        </ul>
-        {% endfor %}
-    </div>
-    </body>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    {% endfor %}
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 </html>
