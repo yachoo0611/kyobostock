@@ -1,0 +1,30 @@
+@media all and (max-width:399px){
+    .book{
+        margin: 10px;
+        margin-left:5px;
+        width: 100%;
+        height: auto;
+    }
+    .book>div{
+        vertical-align: middle;
+        width: 100%;
+    }
+    .bookImg{
+        width:85px;
+    }
+    .bookImg>img{
+        display: flex;
+        align-items: center;
+    }
+    .bookInfo{
+        font-size: 12px;
+        padding-left: 10px;
+        padding-top : 10px;
+    }
+    .bookTitle>p{
+        word-wrap: break-word;
+    }
+    .stock{
+        margin-top:10px;
+    }
+}

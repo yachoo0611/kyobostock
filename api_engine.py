@@ -28,9 +28,7 @@ def bookInfo(title):
     search = res.json()
     book = search['items']
     for i in book:
-        t = i['title']
-        t = t.replace('<b>', '').replace('</b>', '')
-        # t = t.replace('</b>', '')
-        i['title'] = t
+        for j in i:
+            i[j] = i[j].replace('<b>', '').replace('</b>', '')
         i['isbn'] = i['isbn'][11:]
     return book
