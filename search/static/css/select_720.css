@@ -1,0 +1,55 @@
+@media all and (max-width:719px){
+    body{
+        min-width: 300px;
+    }
+    #title{
+        position: relative;
+        margin-top: 30px;
+        color: gray;
+    }
+    #books{
+        width: 90%;
+    }
+    .book{
+        background-color: white;
+        margin: 15px;
+        padding: 10px;
+        height: 180px;
+        box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
+    }
+    .book>div{
+        float: left;
+        height: 130px;
+        margin: 0 10px;
+    }
+    .bookImg{
+        min-width: 90px;
+        height: 130px;
+    }
+    .bookImg>img{
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .bookInfo{
+        height: 130px;
+        position: relative;
+    }
+    .bookTitle{
+        width: 100%;
+        padding-top: 10px;
+        word-break: break-all;
+    }
+    .bookInfo>table{
+        width: 100%;
+        height:70px;
+        word-break: break-all;
+        font-size: 12px;
+        padding: 10px 0;
+    }
+    .bookInfo>form{
+        text-align: center;
+        padding: 10px;
+    }
+}
