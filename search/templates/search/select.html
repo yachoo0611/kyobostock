@@ -18,15 +18,13 @@
             list-style-type: none;
         }
         #title{
-            width: 100%;
+            position: relative;
             color: gray;
-            margin-top: 30px;
         }
         .book{
-            position: relative;
             float: left;
             background-color: white;
-            margin: 20px;
+            margin: 15px;
             padding: 10px;
             width: 200px;
             height: 350px;
@@ -67,41 +65,45 @@
     </style>
 </head>
 <body>
-<div id="wrap" class="container-fluid">
-    <header id="title">
-        <h3>'{{ t }}'에 대한 검색결과:</h3>
-        <p>찾으시는 책이 없으면 작가를 같이 검색해보세요.</p>
-    </header>
-    {% for book in b %}
-    <div class="book col-md-2 col-md-offset-1">
-        <div class="bookImg"><img src={{ book.image }}></div>
-        <div class="bookTitle"><strong>{{ book.title }}</strong></div>
-        <div class="bookInfo">
-            <table>
-                <colgroup>
-                    <col width=25%>
-                    <col width=75%>
-                </colgroup>
-                <tr>
-                    <td>작가</td>
-                    <td>:  {{ book.author }}</td>
-                </tr>
-                <tr>
-                    <td>출판사</td>
-                    <td>:  {{ book.publisher }}</td>
-                </tr>
-                <tr>
-                    <td>가격</td>
-                    <td>:  {{ book.price }}원</td>
-                </tr>
-            </table>
-            <form action="/result/{{ book.isbn }}/" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm stock">재고 검색</button>
-            </form>
+<div class="container-fluid">
+    <div id="wrap" class="container">
+        <div id="title" class="row">
+            <h3>'{{ t }}'에 대한 검색결과:</h3>
+            <p>찾으시는 책이 없으면 작가를 같이 검색해보세요.</p>
+        </div>
+        <div id="books" class="row">
+            {% for book in b %}
+            <div class="book col-md-2">
+                <div class="bookImg"><img src={{ book.image }}></div>
+                <div class="bookTitle"><strong>{{ book.title }}</strong></div>
+                <div class="bookInfo">
+                    <table>
+                        <colgroup>
+                            <col width=25%>
+                            <col width=75%>
+                        </colgroup>
+                        <tr>
+                            <td>작가</td>
+                            <td>:  {{ book.author }}</td>
+                        </tr>
+                        <tr>
+                            <td>출판사</td>
+                            <td>:  {{ book.publisher }}</td>
+                        </tr>
+                        <tr>
+                            <td>가격</td>
+                            <td>:  {{ book.price }}원</td>
+                        </tr>
+                    </table>
+                    <form action="/result/{{ book.isbn }}/" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm stock">재고 검색</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
