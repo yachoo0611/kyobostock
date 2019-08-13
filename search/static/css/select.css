@@ -3,6 +3,9 @@
     margin-top: 30px;
     color: gray;
 }
+#title>h3{
+    margin-top: 10px;
+}
 .books{
     margin: 0 auto;
 }
