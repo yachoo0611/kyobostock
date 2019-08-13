@@ -3,8 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/select_1200.css' %}">
-    <link rel="stylesheet" href="{% static 'css/select_400.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <title>검색결과</title>
     <style>
@@ -14,33 +12,95 @@
         }
         body{
             font-family: 'Nanum Myeongjo', serif;
+            background-color: #f5f5f5;
         }
         ul{
             list-style-type: none;
         }
+        #title{
+            width: 100%;
+            color: gray;
+            margin-top: 30px;
+        }
+        .book{
+            position: relative;
+            float: left;
+            background-color: white;
+            margin: 20px;
+            padding: 10px;
+            width: 200px;
+            height: 350px;
+            box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
+        }
+        .book>div{
+            width:180px;
+        }
+        .bookTitle{
+            height: 75px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .bookImg{
+            height: 130px;
+        }
+        .bookImg>img{
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .bookInfo{
+            height: 125px;
+        }
+        .bookInfo>table{
+            width:180px;
+            height:80px;
+            word-break: break-all;
+            font-size: 12px;
+            padding: 10px 0;
+        }
+        .bookInfo>form{
+            text-align: center;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
-<div id="wrap" class="container col-xs-12">
-    <div id="title"><h3>'{{ t }}'에 대한 검색결과:</h3></div>
+<div id="wrap" class="container-fluid">
+    <header id="title">
+        <h3>'{{ t }}'에 대한 검색결과:</h3>
+        <p>찾으시는 책이 없으면 작가를 같이 검색해보세요.</p>
+    </header>
     {% for book in b %}
-    <section class="book row">
+    <div class="book col-md-2 col-md-offset-1">
         <div class="bookImg"><img src={{ book.image }}></div>
+        <div class="bookTitle"><strong>{{ book.title }}</strong></div>
         <div class="bookInfo">
-            <ul>
-                <li class="bookTitle"><p><strong>{{ book.title }}</strong></p></li>
-                <li>작가 : {{ book.author }}</li>
-                <li>출판사 : {{ book.publisher }}</li>
-                <li>가격 : {{ book.price }}원</li>
-                <li>
-                    <form action="/result/{{ book.isbn }}/" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-sm stock">재고 검색</button>
-                    </form>
-                </li>
-            </ul>
+            <table>
+                <colgroup>
+                    <col width=25%>
+                    <col width=75%>
+                </colgroup>
+                <tr>
+                    <td>작가</td>
+                    <td>:  {{ book.author }}</td>
+                </tr>
+                <tr>
+                    <td>출판사</td>
+                    <td>:  {{ book.publisher }}</td>
+                </tr>
+                <tr>
+                    <td>가격</td>
+                    <td>:  {{ book.price }}원</td>
+                </tr>
+            </table>
+            <form action="/result/{{ book.isbn }}/" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm stock">재고 검색</button>
+            </form>
         </div>
-    </section>
+    </div>
     {% endfor %}
 </div>
 </body>
