@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/select_720.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <title>검색결과</title>
     <style>
@@ -40,16 +41,16 @@
                             <col>
                         </colgroup>
                         <tr>
-                            <td>작  가</td>
-                            <td>:  {{ book.author }}</td>
+                            <td>작가</td>
+                            <td>:&nbsp;&nbsp;{{ book.author }}</td>
                         </tr>
                         <tr>
                             <td>출판사</td>
-                            <td>:  {{ book.publisher }}</td>
+                            <td>:&nbsp;&nbsp;{{ book.publisher }}</td>
                         </tr>
                         <tr>
-                            <td>가  격</td>
-                            <td>:  {{ book.price }}원</td>
+                            <td>가격</td>
+                            <td>:&nbsp;&nbsp;{{ book.price }}원</td>
                         </tr>
                     </table>
                     <form action="/result/{{ book.isbn }}/" method="post">

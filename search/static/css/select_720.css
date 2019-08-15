@@ -7,6 +7,9 @@
         margin-top: 30px;
         color: gray;
     }
+    #title>h3{
+        margin-top: 10px;
+    }
     #books{
         width: 90%;
     }
@@ -47,6 +50,9 @@
         word-break: break-all;
         font-size: 12px;
         padding: 10px 0;
+    }
+    td:first-child{
+        text-align: justify;
     }
     .bookInfo>form{
         text-align: center;
