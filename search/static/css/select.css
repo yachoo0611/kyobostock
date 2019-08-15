@@ -41,7 +41,7 @@
     height: 75px;
     position: relative;
     display: flex;
-    text-align: center;
+    justify-content: center;
     align-items: center;
     margin: auto;
     overflow: hidden;
