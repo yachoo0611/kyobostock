@@ -14,33 +14,35 @@
         width: 90%;
     }
     .book{
+        display: flex;
         background-color: white;
         margin: 15px;
         padding: 10px;
-        height: 180px;
         box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
     }
     .book>div{
-        float: left;
-        height: 130px;
         margin: 0 10px;
     }
     .bookImg{
+        display: flex;
         min-width: 90px;
-        height: 130px;
+        height: auto;
+        justify-content: center;
+        align-items: center;
     }
     .bookImg>img{
         position: relative;
+        /* top: 50%;
         left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%); */
     }
     .bookInfo{
-        height: 130px;
         position: relative;
+        top: 0;
+        height: auto;
     }
     .bookTitle{
-        width: 100%;
+
         padding-top: 10px;
         word-break: break-all;
     }
