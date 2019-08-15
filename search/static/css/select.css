@@ -45,6 +45,14 @@
     vertical-align: middle;
     margin: auto;
 }
+.bookTitle>p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
 .bookInfo>table{
     width:100%;
     height:80px;
