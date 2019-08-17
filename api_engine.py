@@ -6,6 +6,8 @@ def getStock(isbn):
     url = 'http://www.kyobobook.co.kr/prom/2013/general/StoreStockTable.jsp?barcode=' + isbn + '&ejkgb=KOR'
     res = requests.get(url)
     soup = BS(res.text, 'html.parser')
+    # 비어있는 태그들 삭제
+    [x.decompose() for x in soup.findAll(lambda tag: (not tag.contents or len(tag.get_text(strip=True)) <= 0))]
     store = soup.select('th')
     num = soup.select('a')
     stock = {}
