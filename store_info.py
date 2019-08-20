@@ -24,6 +24,7 @@ def getStore(s, pub):
                 stores[i]['in_seoul'] = True
             else:
                 stores[i]['in_seoul'] = False
+            stores[i]['stock'] = 0
     return stores
 
 if __name__ == "__main__":

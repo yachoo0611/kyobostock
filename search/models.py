@@ -7,6 +7,7 @@ class Store(models.Model):
     in_seoul = models.BooleanField()
     x = models.CharField(max_length=20)
     y = models.CharField(max_length=20)
+    stock = models.IntegerField(default=0)
 
     def __str__(self):
         return self.place_name

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.urls import reverse
+from django.core import serializers
+from .models import Store
 import api_engine
 
 
@@ -22,5 +24,12 @@ def result(request, isbn):
     # i = request.POST.get('isbn')
     i = str(isbn)
     stock = api_engine.getStock(i)
-    context = {'stock': stock}
+    n = 0
+    for i in stock.values():
+        n += 1
+        i = int(i)
+        q = Store.objects.filter(pk=n).update(stock=i)
+    seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True), ensure_ascii=False)
+    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False), ensure_ascii=False)
+    context = {'stock': stock, 'in_seoul': seoul, 'not_seoul': not_seoul}
     return render(request, 'search/result.html', context)
