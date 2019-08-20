@@ -58,17 +58,20 @@
     </script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3d2075fccd2daa2b4324fc9e39457e6&libraries=services"></script>
     <script type="text/javascript">
-        var store = {{ stores|safe }};
+        var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
+        var not_seoul = {{ not_seoul|safe }}; // 수도권 지점 정보 받아오기
+        var store = seoul.concat(not_seoul);
         var markers = []; // 마커를 담을 배열
+        var positions = new Array(); // 지점 정보를 담을 배열
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(37.535442, 126.9883856), // 지도의 중심좌표
                 level: 8 // 지도의 확대 레벨
             };
-
-        var positions = new Array(); // 지점 정보를 담을 배열
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성  
+        
+        
         for (var i = 0; i < store.length; i++){
             var p = new Object(); // positions에 담을 객체 생성
             p.title = store[i].fields.place_name;
@@ -79,6 +82,7 @@
             p.latlng = new kakao.maps.LatLng(y, x);
             positions.push(p)
         }
+
         for (var i = 0; i < positions.length; i ++) {
             // 마커를 생성합니다
             var marker = new kakao.maps.Marker({
@@ -87,9 +91,10 @@
                 title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             });
         }
-        var p = JSON.stringify(positions);
 
         marker.setMap(map); // 마커 지도 위에 표시
+
+        var p = JSON.stringify(positions);
         document.write(p)
     </script>
     <!-- <script type="text/javascript" src="{% static 'js/map.js' %}"></script> -->

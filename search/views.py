@@ -25,6 +25,6 @@ def result(request, isbn):
     i = str(isbn)
     stock = api_engine.getStock(i)
     seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True), ensure_ascii=False)
-    # not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False), ensure_ascii=False)
-    context = {'stock': stock, 'stores': seoul}
+    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False), ensure_ascii=False)
+    context = {'stock': stock, 'in_seoul': seoul, 'not_seoul': not_seoul}
     return render(request, 'search/result.html', context)
