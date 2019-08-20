@@ -65,13 +65,20 @@
             mapOption = {
                 center: new kakao.maps.LatLng(37.535442, 126.9883856), // 지도의 중심좌표
                 level: 8 // 지도의 확대 레벨
-            };  
-        var positions = new Array();
+            };
+
+        var positions = new Array(); // 지점 정보를 담을 배열
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성  
         for (var i = 0; i < store.length; i++){
-            positions.push({title: store[i].fields.place_name, latlng: new kakao.maps.LatLng(parseFloat(store[i].fields.x), parseFloat(store[i].fields.y))});
+            var p = new Object(); // positions에 담을 객체 생성
+            p.title = store[i].fields.place_name;
+            p.road_address_name = store[i].fields.road_address_name;
+            p.phone = store[i].fields.phone;
+            x = Number(store[i].fields.x);
+            y = Number(store[i].fields.y);
+            p.latlng = new kakao.maps.LatLng(y, x);
+            positions.push(p)
         }
-
         for (var i = 0; i < positions.length; i ++) {
             // 마커를 생성합니다
             var marker = new kakao.maps.Marker({
@@ -81,10 +88,9 @@
             });
         }
         var p = JSON.stringify(positions);
-        document.write(p)
 
         marker.setMap(map); // 마커 지도 위에 표시
-        document.write(positions)
+        document.write(p)
     </script>
     <!-- <script type="text/javascript" src="{% static 'js/map.js' %}"></script> -->
 </body>
