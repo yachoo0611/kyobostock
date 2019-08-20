@@ -61,6 +61,7 @@
         var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
         var not_seoul = {{ not_seoul|safe }}; // 수도권 지점 정보 받아오기
         var store = seoul.concat(not_seoul);
+        var stock = {{ stock|safe }};
         var markers = []; // 마커를 담을 배열
         var positions = new Array(); // 지점 정보를 담을 배열
 
@@ -71,7 +72,6 @@
             };
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성  
         
-        
         for (var i = 0; i < store.length; i++){
             var p = new Object(); // positions에 담을 객체 생성
             p.title = store[i].fields.place_name;
@@ -80,6 +80,7 @@
             x = Number(store[i].fields.x);
             y = Number(store[i].fields.y);
             p.latlng = new kakao.maps.LatLng(y, x);
+            p.stock = store[i].fields.stock;
             positions.push(p)
         }
 
