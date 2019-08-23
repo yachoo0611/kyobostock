@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="utf-8"/>
 	<title>test</title>
 	<style type="text/css">
@@ -15,48 +17,72 @@
     table{
         text-align: center;
         border: 1px solid grey;
+        font-size: 10px;
     }
-    th{
-        border-right: 1px solid gray;
+    tr{
+        border-bottom: 1px solid gray;
     }
-    td{
+    col{
         border-right: 1px solid gray;
+        width: 12.5%;
+    }
+    .in_wrap{
+        float: left;
+    }
+    .stock_wrap{
+
+        border: 1px solid black;
     }
     #map{
-        width: auto;
-        height:350px;
+        height:400px;
     }
 	</style>
 </head>
 <body>
-    <p id="demo"></p>
-	<div id="stock">
-		<table>
-            <tr>
-                {% for key,value in stock.items %}
-                <th>{{ key }}</th>
-                <td>{{ value }}</td>
-                {% endfor %}
-            </tr>
-
-           <!-- <tr>
-               {% for i in stock.keys %}
-                   <td>{{ i }}</td>   
-               {% endfor %}
-           </tr>
-           <tr>
-               {% for i in stock.values %}
-                   <td>{{ i }}</td>   
-               {% endfor %}
-           </tr> -->
-        </table>
-	</div>
-    <div id="map" style="width:100%;height:350px;"></div>
+	<div id="wrap" class="container">
+        <div id="table_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
+            <div id="s_wrap" class="stock_wrap row">
+                <table id="in_seoul" class="stock_table">
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                </table>
+            </div>
+            <div id="ns_wrap" class="stock_wrap row">
+                <table id="not_seoul" class="stock_table">
+                </table>
+            </div>
+        </div>
+        <div id="map" class="in_wrap col-lg-6 col-md-6 col-sm-12"></div>
+    </div>    
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3d2075fccd2daa2b4324fc9e39457e6&libraries=services"></script>
     <script type="text/javascript">
         var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
         var not_seoul = {{ not_seoul|safe }}; // 수도권 지점 정보 받아오기
-        var stock = {{ stock|safe }};
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            t = 0
+            for(i=0; i<(seoul.length/8); i++){
+                var row1= $("<tr />");
+                var row2= $("<tr />");
+                $("#in_seoul").append(row1);
+                $("#in_seoul").append(row2);
+                for(j=0; j<8; j++){
+                    row1.append($("<th>" + seoul[t].fields.place_name + "</th>"));
+                    row2.append($("<td>" + seoul[t].fields.stock + "</td>"));
+                    t++;
+                }
+            }
+            
+        });
     </script>
     <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 </body>

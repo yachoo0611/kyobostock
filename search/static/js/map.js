@@ -34,4 +34,4 @@ for (var i = 0; i < positions.length; i ++) {
 marker.setMap(map); // 마커 지도 위에 표시
 
 var p = JSON.stringify(positions);
-document.write(p)
+document.write(p);
