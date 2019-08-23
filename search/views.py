@@ -25,11 +25,14 @@ def result(request, isbn):
     i = str(isbn)
     stock = api_engine.getStock(i)
     n = 0
+    # DB에 각 지점 재고 업데이트 위한 for문
     for i in stock.values():
-        n += 1
-        i = int(i)
-        q = Store.objects.filter(pk=n).update(stock=i)
-    seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True), ensure_ascii=False)
-    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False), ensure_ascii=False)
-    context = {'stock': stock, 'in_seoul': seoul, 'not_seoul': not_seoul}
+        n += 1 # pk 위한 변수
+        # 재고를 받아올 때 지점 순서와 DB에 입력된 지점 순서는 동일
+        # db에 입력된 지점의 pk는 1씩 늘어남
+        # pk를 기준으로 지점을 순서대로 받아와 해당 지점에 재고 업데이트
+        q = Store.objects.filter(pk=n).update(stock=int(i))
+    seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False)
+    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False)
+    context = {'in_seoul': seoul, 'not_seoul': not_seoul}
     return render(request, 'search/result.html', context)
