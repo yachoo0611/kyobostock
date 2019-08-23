@@ -17,3 +17,10 @@ var drawTable = function (data, table) {
         }
     }
 }
+
+// 지도 이동 함수
+function panTo(mv) {
+    var moveLatLon = mv; // 이동할 좌표 받아오기
+    map.panTo(moveLatLon); // 지도 중심 이동
+}
+
