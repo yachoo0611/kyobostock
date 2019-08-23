@@ -35,33 +35,31 @@ for (var i = 0; i < positions.length; i ++) {
 }
 
 marker.setMap(map); // 마커 지도 위에 표시
-
+// 지점명 클릭 시 해당 마커로 지도 이동
 $(".stock_table").on("click", "th", function() {
-    var place = $(this).text();
+    var place = $(this).text(); // 지점명
+    var mv = new Object; // 좌표(객체) 받기 위한 변수
+    // 클릭한 지점명과 동일한 positions 배열의 좌표를 받아옴
     $.each(positions, function(index, item) {
         if (item.title == place){
-            alert(item.pk);
+            mv = item.latlng;
             return;
         }
     });
-});
-// 클릭 시
-// function getStore(place){
-    
-// };
+    panTo(mv);
+});    
+
+function panTo(mv) {
+    // map.setLevel(4);
+    // 이동할 위도 경도 위치 생성
+    var moveLatLon = mv;
+    // 지도 중심 이동
+    map.panTo(moveLatLon);
     
 
-
-function panTo() {
-    // 이동할 위도 경도 위치를 생성합니다 
-    var moveLatLon = new kakao.maps.LatLng(33.450580, 126.574942);
-    
-    // 지도 중심을 부드럽게 이동시킵니다
-    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-    map.panTo(moveLatLon);            
 }     
 
 
 
 var p = JSON.stringify(positions);
-document.write(p);
+// document.write(p);
