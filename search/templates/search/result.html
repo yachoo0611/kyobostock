@@ -7,7 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="utf-8"/>
 	<title>test</title>
-	<style type="text/css">
+    <style type="text/css">
+    script#seoul{
+        display: none;
+    }
 	ul {
 		float:left;
 		list-style:none;
@@ -39,7 +42,17 @@
     #map{
         height:400px;
     }
-	</style>
+
+
+    .iw_wrap{
+        width: 200px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    	</style>
 </head>
 <body>
 	<div id="wrap" class="container">
@@ -82,6 +95,7 @@
             drawTable(seoul, "#in_seoul");
             drawTable(not_seoul, "#not_seoul");
         });
+
     </script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3d2075fccd2daa2b4324fc9e39457e6&libraries=services"></script>
     <script type="text/javascript" src="{% static 'js/func.js' %}"></script>

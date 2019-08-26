@@ -32,25 +32,29 @@ for (var i = 0; i < positions.length; i ++) {
         position: positions[i].latlng, // 마커를 표시할 위치
         title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
     });
-
-    // 마커에 표시할 인포윈도우를 생성합니다 
+    
+    // marker.setMap(map); // 마커 지도 위에 표시
+    
+    // 인포윈도우에 입력할 content
+    var iwcontent = '<div class="iw_wrap">' + 
+        '<div class="iw_title">' + positions[i].title + '</div>' +
+        '<div>' + positions[i].stock + '</div>' +
+        '<div>' + positions[i].phone + '</div>' +
+        '<div class="desc address">' + positions[i].road_address_name + '</div>' +
+        '</div>'
+    // 마커에 표시할 인포윈도우 생성
     var infowindow = new kakao.maps.InfoWindow({
-        content: positions[i].title, // 인포윈도우에 표시할 내용
-        removable: true
+        removable: true,
+        content: iwcontent
     });
 
-    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
     (function(marker, infowindow) {
-        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        // 마커에 click 이벤트 등록
         kakao.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
         });
     })(marker, infowindow);
 }
-
-
-marker.setMap(map); // 마커 지도 위에 표시
 
 // 지점명 클릭 시 해당 마커로 지도 이동
 $(".stock_table").on("click", "th", function() {
@@ -67,16 +71,8 @@ $(".stock_table").on("click", "th", function() {
 });    
 
 function panTo(mv) {
-    // map.setLevel(4);
     // 이동할 위도 경도 위치 생성
     var moveLatLon = mv;
     // 지도 중심 이동
     map.panTo(moveLatLon);
-    
-
-}     
-
-
-
-var p = JSON.stringify(positions);
-// document.write(p);
+}
