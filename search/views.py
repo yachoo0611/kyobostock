@@ -21,7 +21,6 @@ def select(request):
 
 
 def result(request, isbn):
-    # i = request.POST.get('isbn')
     i = str(isbn)
     stock = api_engine.getStock(i)
     n = 0
