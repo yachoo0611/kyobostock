@@ -5,7 +5,7 @@ vm
 .DS_Store
 .vscode
 .idea
-.myvenv
+myvenv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
