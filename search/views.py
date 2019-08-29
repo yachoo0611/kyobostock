@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core import serializers
 from .models import Store
 import api_engine
+import base64
 
 
 def index(request):
@@ -31,7 +32,9 @@ def result(request, isbn):
         # db에 입력된 지점의 pk는 1씩 늘어남
         # pk를 기준으로 지점을 순서대로 받아와 해당 지점에 재고 업데이트
         q = Store.objects.filter(pk=n).update(stock=int(i))
-    seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False)
-    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False)
+    seoul = base64.b64encode(serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False).encode("UTF-8")).decode("UTF-8")
+    not_seoul = base64.b64encode(serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False).encode("UTF-8")).decode("UTF-8")
+    #seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False);
+    #not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False);
     context = {'in_seoul': seoul, 'not_seoul': not_seoul}
     return render(request, 'search/result.html', context)

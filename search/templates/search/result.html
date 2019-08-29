@@ -122,8 +122,21 @@
         </div>
     </div>    
     <script type="text/javascript">
-        var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
-        var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
+
+        //base64 To utf-8 변환 코드
+        function b64DecodeUnicode(str)
+        {
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+        }
+
+        var seoul = "{{ in_seoul|safe }}"; // 수도권 지점 정보 받아오기
+        var not_seoul = "{{ not_seoul|safe }}"; // 비수도권 지점 정보 받아오기
+
+        seoul = eval(b64DecodeUnicode(seoul))
+        not_seoul = eval(b64DecodeUnicode(not_seoul))
+
         $(document).ready(function() {
             drawTable(seoul, "#in_seoul");
             drawTable(not_seoul, "#not_seoul");
