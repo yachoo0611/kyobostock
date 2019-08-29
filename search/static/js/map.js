@@ -1,4 +1,4 @@
-var store = seoul.concat(not_seoul);
+﻿var store = seoul.concat(not_seoul);
 var markers = []; // 마커를 담을 배열
 var positions = new Array(); // 지점 정보를 담을 배열
 
@@ -9,6 +9,8 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     };
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성  
 
+// opened 배열에 현재 열려있는 인포윈도우를 담는다
+var opened = [];
 // positions에 각 지점 정보 입력위한 for문
 for (var i = 0; i < store.length; i++){
     var p = new Object(); // positions에 담을 객체 생성
@@ -32,7 +34,7 @@ for (var i = 0; i < positions.length; i ++) {
         position: positions[i].latlng, // 마커를 표시할 위치
         title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
     });
-    
+    positions[i].marker = marker;
     // marker.setMap(map); // 마커 지도 위에 표시
     
     // 인포윈도우에 입력할 content
@@ -44,16 +46,22 @@ for (var i = 0; i < positions.length; i ++) {
         '</div>'
     // 마커에 표시할 인포윈도우 생성
     var infowindow = new kakao.maps.InfoWindow({
-        removable: true,
         content: iwcontent
     });
+    positions[i].infowindow = infowindow;
 
-    (function(marker, infowindow) {
-        // 마커에 click 이벤트 등록
-        kakao.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map, marker);
-        });
-    })(marker, infowindow);
+    // 마커에 click 이벤트 등록
+    kakao.maps.event.addListener(marker, 'click', ifw(marker,map,infowindow));
+
+}
+
+function ifw(marker, map, infowindow)
+{
+    return function () {
+        if (opened.length != 0) opened.shift().close();
+        infowindow.open(map, marker);
+        opened.push(infowindow);
+    }
 }
 
 // 지점명 클릭 시 해당 마커로 지도 이동
@@ -64,10 +72,16 @@ $(".stock_table").on("click", "th", function() {
     $.each(positions, function(index, item) {
         if (item.title == place){
             mv = item.latlng;
+            marker = item.marker;
+            infowindow = item.infowindow;
             return;
         }
     });
     panTo(mv);
+
+    if (opened.length != 0) opened.shift().close();
+    infowindow.open(map,marker);
+    opened.push(infowindow);
 });    
 
 function panTo(mv) {
