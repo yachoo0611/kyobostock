@@ -20,16 +20,11 @@
     position: relative;
     color: gray;
     }
-    #main_title>h3{
+    #main_title{
+        width: 100%;
         margin-top: 40px;
+        /* padding: 40 0 20px 0; */
     }
-
-    ul {
-		float:left;
-		list-style:none;
-		margin:0;
-		padding:0;
-	}
     table{
         text-align: center;
         border: 1px solid grey;
@@ -49,16 +44,20 @@
     .in_wrap{
         float: left;
     }
-    .stock_wrap{
+    .shadow{
         background-color: white;
-        margin: 15px;
-        padding: 10px;
         box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
     }
-    #map{
+    .stock_wrap{
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    #map_wrap{
         height:400px;
     }
-
+    #map{
+        height:100%;
+    }
     .iw_wrap{
         width: 200px;
         height: 100px;
@@ -78,12 +77,12 @@
 </head>
 <body>
 	<div id="wrap" class="container">
-        <div id="main_title" class="title row">
+        <div id="main_title" class="title">
             <h3>재고 현황:</h3>
+            <p>지점명을 클릭하면 지도에 위치가 나타납니다</p>
         </div>
         <div id="table_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
-            <div class="row">지점명을 클릭하면 지도에 위치가 나타납니다</div>
-            <div id="seoul_wrap" class="stock_wrap row">
+            <div id="seoul_wrap" class="shadow stock_wrap row">
                 <div class="title">
                     <h5>수도권</h5>
                 </div>
@@ -100,7 +99,7 @@
                     </colgroup>
                 </table>
             </div>
-            <div id="notseoul_wrap" class="stock_wrap row">
+            <div id="notseoul_wrap" class="shadow stock_wrap row">
                 <div class="title">
                     <h5>비수도권</h5>
                 </div>
@@ -118,7 +117,9 @@
                 </table>
             </div>
         </div>
-        <div id="map" class="in_wrap col-lg-6 col-md-6 col-sm-12"></div>
+        <div id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
+            <div id="map"></div>
+        </div>
     </div>    
     <script type="text/javascript">
         var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
