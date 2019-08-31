@@ -1,0 +1,60 @@
+.title{
+position: relative;
+color: gray;
+}
+#main_title{
+    width: 100%;
+    margin-top: 40px;
+    /* padding: 40 0 20px 0; */
+}
+table{
+    text-align: center;
+    border: 1px solid grey;
+    font-size: 10px;
+}
+tr{
+    border-bottom: 1px solid gray;
+}
+col{
+    border-right: 1px solid gray;
+    width: 12.5%;
+}
+th{
+    height: 5px;
+    cursor: pointer;
+}
+.in_wrap{
+    float: left;
+}
+.shadow{
+    background-color: white;
+    box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
+}
+.stock_wrap{
+    margin-bottom: 20px;
+    padding: 10px;
+}
+#map_wrap{
+    height:400px;
+}
+#map{
+    height:100%;
+}
+.info_wrap{
+    width: 200px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px 10px;
+}
+.info_title {
+    padding: 3px 0;
+    margin: 0 0 5px 0;
+    height: 30px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    font-weight: bold;
+}
+.info_content{
+    color: gray;
+}

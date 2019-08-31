@@ -5,9 +5,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-	<title>test</title>
+	<title>Result</title>
     <style type="text/css">
     *{
         margin: 0;
@@ -16,63 +17,6 @@
     body{
         font-family: 'Nanum Myeongjo', serif;
     }
-    .title{
-    position: relative;
-    color: gray;
-    }
-    #main_title{
-        width: 100%;
-        margin-top: 40px;
-        /* padding: 40 0 20px 0; */
-    }
-    table{
-        text-align: center;
-        border: 1px solid grey;
-        font-size: 10px;
-    }
-    tr{
-        border-bottom: 1px solid gray;
-    }
-    col{
-        border-right: 1px solid gray;
-        width: 12.5%;
-    }
-    th{
-        height: 5px;
-        cursor: pointer;
-    }
-    .in_wrap{
-        float: left;
-    }
-    .shadow{
-        background-color: white;
-        box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
-    }
-    .stock_wrap{
-        margin-bottom: 20px;
-        padding: 10px;
-    }
-    #map_wrap{
-        height:400px;
-    }
-    #map{
-        height:100%;
-    }
-    .iw_wrap{
-        width: 200px;
-        height: 100px;
-        text-align: left;
-        font-size: 12px;
-        line-height: 1.5;
-    }
-    .iw_wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 213px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 14px;font-weight: bold;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 5px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .address {position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 	</style>
 </head>
 <body>
@@ -124,6 +68,7 @@
     <script type="text/javascript">
         var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
         var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
+        // var test {{test | safe}};    
         $(document).ready(function() {
             drawTable(seoul, "#in_seoul");
             drawTable(not_seoul, "#not_seoul");
