@@ -36,6 +36,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    border: 0;
 }
 .bookInfo{
     height: 200px;
