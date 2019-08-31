@@ -25,7 +25,8 @@
 .bookImg{
     height: 130px;
 }
-.bookImg>img{
+.bookImg>form{
+    text-align: center;
     position: relative;
     left: 50%;
     top: 50%;
