@@ -32,7 +32,10 @@
         <div id="books" class="row">
             {% for book in b %}
             <div class="book col-xs-12">
-                <div class="bookImg"><img src={{ book.image }}></div>
+                <form action="/result/{{ book.isbn }}/"  class="bookImg" method="post">
+                    {% csrf_token %}
+                    <button type="submit"><img src={{ book.image }}></button>
+                </form>
                 <div class="bookInfo">
                     <div class="bookTitle">
                         <p><strong>{{ book.title }}</strong></p>
