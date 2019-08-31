@@ -32,17 +32,18 @@ for (var i = 0; i < positions.length; i ++) {
     var marker = new kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: positions[i].latlng, // 마커를 표시할 위치
-        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        title: positions[i].title, // 마커에 마우스를 올리면 표시될 타이틀
     });
     positions[i].marker = marker;
     // marker.setMap(map); // 마커 지도 위에 표시
     
     // 인포윈도우에 입력할 content
-    var iwcontent = '<div class="iw_wrap">' + 
-        '<div class="iw_title">' + positions[i].title + '</div>' +
-        '<div>' + positions[i].stock + '</div>' +
-        '<div>' + positions[i].phone + '</div>' +
-        '<div class="desc address">' + positions[i].road_address_name + '</div>' +
+    var iwcontent =
+        '<div class="info_wrap">' + 
+            '<div class="info_title">' + positions[i].title + '</div>' +
+            '<div class="info_content">재고 : ' + positions[i].stock + '</div>' +
+            '<div class="info_content">번호 : ' + positions[i].phone + '</div>' +
+            '<div class="info_content">주소 : ' + positions[i].road_address_name + '</div>' +
         '</div>'
     // 마커에 표시할 인포윈도우 생성
     var infowindow = new kakao.maps.InfoWindow({
@@ -52,7 +53,6 @@ for (var i = 0; i < positions.length; i ++) {
 
     // 마커에 click 이벤트 등록
     kakao.maps.event.addListener(marker, 'click', ifw(marker,map,infowindow));
-
 }
 
 function ifw(marker, map, infowindow)
