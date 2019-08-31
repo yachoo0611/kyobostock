@@ -35,7 +35,7 @@
                 <div class="bookImg">
                     <form action="/result/{{ book.isbn }}/" method="post">
                         {% csrf_token %}
-                        <button type="submit"><img src={{ book.image }}></button>
+                        <button id="img_btn" type="submit"><img src={{ book.image }}></button>
                     </form>
                 </div>
                 <div class="bookInfo">

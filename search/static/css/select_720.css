@@ -30,6 +30,11 @@
         justify-content: center;
         align-items: center;
     }
+    #img_btn[type=submit]{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
     .bookImg>img{
         position: relative;
         /* top: 50%;
