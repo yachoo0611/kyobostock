@@ -60,4 +60,7 @@
         text-align: center;
         padding: 10px;
     }
+    .btn{
+        background-color: #e6e6e6;
+    }
 }
