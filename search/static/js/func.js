@@ -1,5 +1,6 @@
 // data = 지점 정보, table = 자료를 입력할 테이블
 var drawTable = function (data, table) {
+    document.write(data);
     t = 0; // 지점 수를 체크하기 위한 변수
     // 8개 열이 들어가는 행 생성을 위한 for문
     for(i=0; i<(data.length/8); i++){
@@ -11,8 +12,8 @@ var drawTable = function (data, table) {
         for(j=0; j<8; j++){
             // t가 지점 수 보다 클 경우 for문 종료
             if (t > (data.length-1)) break;
-            row1.append($("<th>" + data[t].fields.place_name + "</th>"));
-            row2.append($("<td>" + data[t].fields.stock + "</td>"));
+            row1.append($("<th>" + data[t].info.place + "</th>"));
+            row2.append($("<td>" + data[t].info.s + "</td>"));
             t++;
         }
     }

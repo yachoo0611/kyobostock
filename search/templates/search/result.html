@@ -64,14 +64,21 @@
         <div id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
             <div id="map"></div>
         </div>
-    </div>    
+    </div>  
     <script type="text/javascript">
-        var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
-        var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
-        // var test {{test | safe}};    
+        
+        // var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
+        // var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
+        alert('1');
+        var s = {{ test|safe }};
+        
+        // var s = JSON.parse();
+        
         $(document).ready(function() {
-            drawTable(seoul, "#in_seoul");
-            drawTable(not_seoul, "#not_seoul");
+            // alert(seoul[0].info.place);
+            
+            // drawTable(seoul, "#in_seoul");
+            // drawTable(not_seoul, "#not_seoul");
         });
 
     </script>

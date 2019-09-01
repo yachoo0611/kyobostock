@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.core import serializers
 from .models import Store
+import json
 import api_engine
 
 
@@ -33,5 +34,9 @@ def result(request, isbn):
         q = Store.objects.filter(pk=n).update(stock=int(i))
     seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False)
     not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False)
-    context = {'in_seoul': seoul, 'not_seoul': not_seoul}
-    return render(request, 'search/result.html', context)
+    s = Store.objects.filter(in_seoul=True).order_by('-stock')
+    test = [Store.dict() for Store in s]
+    # test = serializers.serialize('json', s)
+    # context = {'in_seoul': seoul, 'not_seoul': not_seoul, 'test': test}
+    return render(request, 'search/result.html', json.dumps({"test":test}), content_type='application/json')
+    
