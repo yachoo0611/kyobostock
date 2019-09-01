@@ -15,12 +15,12 @@ var opened = [];
 for (var i = 0; i < store.length; i++){
     var p = new Object(); // positions에 담을 객체 생성
     // fields는 각 지점의 실질적인 정보를 담고있는 dict
-    p.title = store[i].fields.place_name;
-    p.road_address_name = store[i].fields.road_address_name;
-    p.phone = store[i].fields.phone;
-    p.latlng = new kakao.maps.LatLng(Number(store[i].fields.y), Number(store[i].fields.x));
-    p.stock = store[i].fields.stock;
-    p.pk = store[i].pk;
+    p.title = store[i].info.place;
+    p.road_address_name = store[i].info.address;
+    p.phone = store[i].info.tel;
+    p.latlng = new kakao.maps.LatLng(Number(store[i].info.lat), Number(store[i].info.lon));
+    p.stock = store[i].info.s;
+    p.pk = store[i].num;
     positions.push(p);
 }
 

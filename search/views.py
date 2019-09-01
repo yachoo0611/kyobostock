@@ -1,4 +1,4 @@
-from django.shortcuts import render
+﻿from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -32,11 +32,13 @@ def result(request, isbn):
         # db에 입력된 지점의 pk는 1씩 늘어남
         # pk를 기준으로 지점을 순서대로 받아와 해당 지점에 재고 업데이트
         q = Store.objects.filter(pk=n).update(stock=int(i))
-    seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False)
-    not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False)
+    #seoul = serializers.serialize('json', Store.objects.filter(in_seoul=True).order_by('-stock'), ensure_ascii=False)
+    #not_seoul = serializers.serialize('json', Store.objects.filter(in_seoul=False).order_by('-stock'), ensure_ascii=False)
     s = Store.objects.filter(in_seoul=True).order_by('-stock')
-    test = [Store.dict() for Store in s]
-    # test = serializers.serialize('json', s)
-    # context = {'in_seoul': seoul, 'not_seoul': not_seoul, 'test': test}
-    return render(request, 'search/result.html', json.dumps({"test":test}), content_type='application/json')
-    
+    ns = Store.objects.filter(in_seoul=False).order_by('-stock')
+    seoul = [Store.dict() for Store in s]
+    not_seoul = [Store.dict() for Store in ns]
+
+    context = {'in_seoul': seoul, 'not_seoul': not_seoul }
+    return render(request, 'search/result.html',context)
+   

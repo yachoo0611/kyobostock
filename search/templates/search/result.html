@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,18 +67,14 @@
     </div>  
     <script type="text/javascript">
         
-        // var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
-        // var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
-        alert('1');
-        var s = {{ test|safe }};
+        var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
+        var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
         
-        // var s = JSON.parse();
         
         $(document).ready(function() {
-            // alert(seoul[0].info.place);
-            
-            // drawTable(seoul, "#in_seoul");
-            // drawTable(not_seoul, "#not_seoul");
+
+            drawTable(seoul, "#in_seoul");
+            drawTable(not_seoul, "#not_seoul");
         });
 
     </script>
