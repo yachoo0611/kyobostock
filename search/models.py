@@ -19,7 +19,7 @@ class Store(models.Model):
                 'place': self.place_name,
                 'address': self.road_address_name,
                 'tel': self.phone,
-                'location': self.in_seoul,
+                'location': str(self.in_seoul),
                 's': self.stock,
                 'lat': self.y,
                 'lon': self.x    
