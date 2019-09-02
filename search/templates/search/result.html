@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,12 +64,15 @@
         <div id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
             <div id="map"></div>
         </div>
-    </div>    
+    </div>  
     <script type="text/javascript">
+        
         var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
         var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
-        // var test {{test | safe}};    
+        
+        
         $(document).ready(function() {
+
             drawTable(seoul, "#in_seoul");
             drawTable(not_seoul, "#not_seoul");
         });
