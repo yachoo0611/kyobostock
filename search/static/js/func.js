@@ -1,6 +1,5 @@
-// data = 지점 정보, table = 자료를 입력할 테이블
+﻿// data = 지점 정보, table = 자료를 입력할 테이블
 var drawTable = function (data, table) {
-    document.write(data);
     t = 0; // 지점 수를 체크하기 위한 변수
     // 8개 열이 들어가는 행 생성을 위한 for문
     for(i=0; i<(data.length/8); i++){
