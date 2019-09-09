@@ -47,7 +47,8 @@ for (var i = 0; i < positions.length; i ++) {
         '</div>'
     // 마커에 표시할 인포윈도우 생성
     var infowindow = new kakao.maps.InfoWindow({
-        content: iwcontent
+        content: iwcontent,
+        removable: true
     });
     positions[i].infowindow = infowindow;
 

@@ -1,6 +1,7 @@
 .title{
-position: relative;
-color: gray;
+    position: relative;
+    color: gray;
+    width: 100%;
 }
 #main_title{
     width: 100%;
@@ -33,6 +34,9 @@ th{
 .stock_wrap{
     margin-bottom: 20px;
     padding: 10px;
+}
+.stock_table{
+    width:100%;
 }
 #map_wrap{
     height:400px;
