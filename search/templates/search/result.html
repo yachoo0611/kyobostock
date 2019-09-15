@@ -2,83 +2,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/result.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-	<title>Result</title>
+    <title>Result</title>
     <style type="text/css">
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        font-family: 'Nanum Myeongjo', serif;
-    }
-	</style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nanum Myeongjo', serif;
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
-	<div id="wrap" class="container">
+    <div id="wrap" class="container">
         <div id="main_title" class="title">
             <h3>재고 현황:</h3>
             <p>지점명을 클릭하면 지도에 위치가 나타납니다</p>
         </div>
-        <div id="table_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
-            <div id="seoul_wrap" class="shadow stock_wrap row">
-                <div class="title">
-                    <h5>수도권</h5>
+        <ul>
+            <li id="table_wrap" class="in_wrap shadow col-lg-6 col-md-6 col-sm-12">
+                <div id="seoul_wrap" class="stock_wrap row">
+                    <div class="title">
+                        <h5>수도권</h5>
+                    </div>
+                    <table id="in_seoul" class="stock_table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                    </table>
                 </div>
-                <table id="in_seoul" class="stock_table">
-                    <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                    </colgroup>
-                </table>
-            </div>
-            <div id="notseoul_wrap" class="shadow stock_wrap row">
-                <div class="title">
-                    <h5>비수도권</h5>
+                <div id="notseoul_wrap" class="stock_wrap row">
+                    <div class="title">
+                        <h5>비수도권</h5>
+                    </div>
+                    <table id="not_seoul" class="stock_table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                    </table>
                 </div>
-                <table id="not_seoul" class="stock_table">
-                    <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                    </colgroup>
-                </table>
-            </div>
-        </div>
-        <div id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
-            <div id="map"></div>
-        </div>
-    </div>  
+            </li>
+            <li id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
+                <div id="map"></div>
+            </li>
+        </ul>
+    </div>
     <script type="text/javascript">
-        
-        var seoul = {{ in_seoul|safe }}; // 수도권 지점 정보 받아오기
-        var not_seoul = {{ not_seoul|safe }}; // 비수도권 지점 정보 받아오기
-        
-        
-        $(document).ready(function() {
+        var seoul = {{ in_seoul| safe }}; // 수도권 지점 정보 받아오기
+        var not_seoul = {{ not_seoul| safe }}; // 비수도권 지점 정보 받아오기
 
+        $(document).ready(function () {
             drawTable(seoul, "#in_seoul");
             drawTable(not_seoul, "#not_seoul");
+            // resize 이벤트가 발생할때마다 in_wrap의 높이를 동일하게 조절
+            $(window).resize(resizeContents);
+            resizeContents();
         });
-
     </script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3d2075fccd2daa2b4324fc9e39457e6&libraries=services"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3d2075fccd2daa2b4324fc9e39457e6&libraries=services"></script>
     <script type="text/javascript" src="{% static 'js/func.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 </body>

@@ -3,47 +3,52 @@
     color: gray;
     width: 100%;
 }
-#main_title{
-    width: 100%;
-    margin-top: 40px;
-    /* padding: 40 0 20px 0; */
-}
-table{
-    text-align: center;
-    border: 1px solid grey;
-    font-size: 10px;
-}
-tr{
-    border-bottom: 1px solid gray;
-}
-col{
-    border-right: 1px solid gray;
-    width: 12.5%;
-}
-th{
-    height: 5px;
-    cursor: pointer;
-}
 .in_wrap{
     float: left;
+    margin-bottom: 20px;
+}
+.stock_wrap{
+    padding: 10px;
+}
+.stock_table{
+    width:100%;
+    border-collapse: separate;
+    border-spacing: 5px 0;
 }
 .shadow{
     background-color: white;
     box-shadow: 1px 1px 5px rgb(0,0,0,0.1);
 }
-.stock_wrap{
-    margin-bottom: 20px;
-    padding: 10px;
+
+#main_title{
+    width: 100%;
+    margin-top: 40px;
 }
-.stock_table{
-    width:100%;
+/* 표 스타일 */
+table{
+    text-align: center;
+    font-size: 10px;
 }
+col{
+    width: 12.5%;
+}
+th{
+    height: 25px;
+    cursor: pointer;
+    border-bottom: 1px solid #b6b6b6da;
+}
+td{
+    height: 25px;
+    color: gray;
+}
+/* 지도 스타일 */
 #map_wrap{
-    height:400px;
+    height:420px;
 }
 #map{
     height:100%;
 }
+/* 마커 인포윈도우 */
 .info_wrap{
     width: 200px;
     text-align: left;

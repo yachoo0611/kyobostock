@@ -17,3 +17,17 @@ var drawTable = function (data, table) {
         }
     }
 }
+
+function resizeContents() {
+    $('.container').each(function(){
+        var highestBox = 0;
+        $('#table_wrap', this).each(function(){
+            if($(this).height() > highestBox)
+            highestBox = $(this).height();
+        });
+        $('#map_wrap',this).height(highestBox);
+    });
+}
+
+
+
