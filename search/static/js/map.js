@@ -2,12 +2,12 @@
 var markers = []; // 마커를 담을 배열
 var positions = new Array(); // 지점 정보를 담을 배열
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
-        center: new kakao.maps.LatLng(37.535442, 126.9883856), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.226231, 127.191946), // 지도의 중심좌표
         level: 8 // 지도 확대 레벨
     };
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성  
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
 
 // opened 배열에 현재 열려있는 인포윈도우를 담는다
 var opened = [];
@@ -36,10 +36,10 @@ for (var i = 0; i < positions.length; i ++) {
     });
     positions[i].marker = marker;
     // marker.setMap(map); // 마커 지도 위에 표시
-    
+
     // 인포윈도우에 입력할 content
     var iwcontent =
-        '<div class="info_wrap">' + 
+        '<div class="info_wrap">' +
             '<div class="info_title">' + positions[i].title + '</div>' +
             '<div class="info_content">재고 : ' + positions[i].stock + '</div>' +
             '<div class="info_content">번호 : ' + positions[i].phone + '</div>' +
@@ -83,7 +83,7 @@ $(".stock_table").on("click", "th", function() {
     if (opened.length != 0) opened.shift().close();
     infowindow.open(map,marker);
     opened.push(infowindow);
-});    
+});
 
 function panTo(mv) {
     // 이동할 위도 경도 위치 생성
