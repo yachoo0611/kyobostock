@@ -13,11 +13,13 @@ def index(request):
 
 
 def select(request):
+
     t = request.POST.get('title')
     book = api_engine.bookInfo(t)
     if not book:
         return render(request, 'search/nobook.html')
     context = {'b': book, 't': t}
+
     return render(request, 'search/select.html', context)
 
 

@@ -8,6 +8,19 @@
 
     <link rel="stylesheet" href="{%static 'blog/bootstrap/bootstrap.css' %}" media="screen">
     <link rel="stylesheet" href="{%static 'blog/_assets/css/custom.min.css' %}">
+        <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nanum Myeongjo', serif;
+            color:white
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
 
 </head>
 <body>
@@ -58,60 +71,33 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% for book in b %}
-<div class="card mb-3" style="border: 1px solid gold; float: left; width: 20%; height: 50%; ">
-    <strong class="card-header" style="height: 130px;">{{ book.title }}</strong>
-    <p> </p>
 
+<div class="card mb-3" style="border: 1px solid white; float: left; width: 20%; height: 130%; ">
+
+    <div class="card-body">
+
+        <strong>{{ book.title }}</strong>
+
+    <br><br><br>
     <form action="/result/{{ book.isbn }}/" method="post">
         {% csrf_token %}
-        <button id="img_btn" type="submit"><img style="height: 100%; width: 90%; "src={{ book.image }}></button>
+        <button id="img_btn" type="submit" ><img src={{ book.image }} width="200"height="150"></button>
     </form>
-
+</div>
     <div class="card-body">
 
-    </div>
-
-    <div class="card-body">
-        <ul class="list-group list-group-flush" >
-            <strong class="list-group-item"> 저자 : {{ book.author }}</strong>
-
-            <strong class="list-group-item"> 가격 : {{ book.price }} 원</strong>
-
-            <strong class="list-group-item"> 출판사 : {{ book.publisher }}</strong>
-
-        </ul>
-        <p></p>
-        <p></p>
-        <a href="{{book.link}}" class="card-link"><b>온라인 판매처</b></a>
-
+        <strong > 저자 : {{ book.author }}</strong>
+        <strong class="list-group-item"> 가격 : {{ book.price }} 원</strong>
+        <strong class="list-group-item"> 출판사 : {{ book.publisher }}</strong>
         <form action="/result/{{ book.isbn }}/" method="post">
             {% csrf_token %}
-            <button type="submit" >재고 검색</button>
+            <button type="submit"class=" btn-primary" >재고 검색</button>
+            <a href="{{book.link}}" class="btn btn-secondary"><b>온라인 판매처</b></a>
         </form>
     </div>
 
-    <div class="card-footer text-muted">
+    <div class="card-body">
 
     </div>
 

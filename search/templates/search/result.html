@@ -16,6 +16,25 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <title>Result</title>
 
+    <link rel="stylesheet" href="{%static 'blog/bootstrap/bootstrap.css' %}" media="screen">
+    <link rel="stylesheet" href="{%static 'blog/_assets/css/custom.min.css' %}">
+        <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nanum Myeongjo', serif;
+            color:black
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+
+
+
+
 </head>
 <body>
 
@@ -75,9 +94,9 @@
 
 <div id="wrap" class="container">
     <div id="main_title" class="title">
-        <br></br>
-        <h3>재고 현황:</h3>
-        <p>지점명을 클릭하면 지도에 위치가 나타납니다</p>
+        <br>
+        <h3 style="color:white;">재고 현황:</h3>
+        <p style="color:white;">지점명을 클릭하면 지도에 위치가 나타납니다</p>
     </div>
     <ul id="table_wrap" class="in_wrap shadow col-lg-6 col-md-6 col-sm-12">
         <li id="seoul_wrap" class="stock_wrap row">
@@ -129,7 +148,7 @@ if (navigator.geolocation) {
             lon = position.coords.longitude; // 경도
 
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">♥ 현 재   위 치 ♥</div>'; // 인포윈도우에 표시될 내용입니다
+            message = '<div style="padding:10px;"> 현 위 치 </div>'; // 인포윈도우에 표시될 내용입니다
 
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
@@ -183,6 +202,10 @@ function displayMarker(locPosition, message) {
 
 
     </script>
+    <script src="{% static 'blog/bootstrap//jquery.min.js'%}"></script>
+<script src="{% static 'blog/bootstrap/popper.min.js'%}"></script>
+<script src="{% static 'blog/bootstrap/bootstrap.min.js'%}"></script>
+<script src="{% static 'blog/_assets/js/custom.js' %}"></script>
 <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=f811310a5ce7f906d6d12cb711c52565"></script>
 <script type="text/javascript" src="{% static 'js/func.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/map.js' %}"></script>
