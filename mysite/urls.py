@@ -15,8 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import search.views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('search.urls')),
-]
+    path('', include('accounts.urls')),
+    path('', search.views.index, name='index'),
+    path('', include('blogapp.urls')),
+
+    # path('result/<int:isbn>/', search.views.result, name='result'),
+    # path('select/', search.views.select, name='select'),
+    # path('signup/', accounts.views.signup, name='signup'),
+    # path('login/', accounts.views.login, name='login'),
+    # path('logout/', accounts.views.logout, name='logout'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

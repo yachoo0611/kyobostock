@@ -1,0 +1,34 @@
+{% extends "base.html"%}
+{% block title %}
+
+<title>login</title>
+
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="container">
+    {% if error %}
+    <script>
+      alert("다시 입력해주십시오.")
+    </script>
+    {%endif%}
+
+    <h1>Login</h1>
+
+    <form method="POST" action="{% url 'login'%}" >
+        {% csrf_token %}
+        Username:
+        <br>
+        <input name = "username" type="test" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password" type="password" value="">
+        <br><br>
+        <input type="submit" class = "btn btn-primary" value="Login">
+    </form>
+</div>
+{% endblock %}

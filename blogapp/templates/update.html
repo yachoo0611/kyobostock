@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="container">
+        <h1 style="color:red"> Update</h1>
+        <form action="{% url 'edit' updates.id%}" method="POST">
+            {% csrf_token %}
+            <h4>제목: </h4>
+
+            <input type="text" name="title" value={{updates.title}}>
+            <br>
+            <h2>이미지: </h2>
+            <input type="file" name="image" > <br>
+            <br>
+            <br>
+            <h4>본문: </h4>
+            <textarea cols=40 rows=10 name="body">{{updates.body}}</textarea>
+            <br>
+            <br>
+            <input class="btn btn-dark" type="submit" value="수정하기">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

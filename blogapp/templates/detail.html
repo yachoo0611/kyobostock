@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h1>{{details.title}}</h1>
+
+            <img  src="{{ details.image.url }}" width="200" height="200">
+            <p>{{details.pub_date}}</p>
+            <p>{{details.body}}</p>
+            <a href="{% url 'blog' %}"> 목록으로가기 </a>
+
+        </div>
+    </div>
+</div>
+
+<div class='container' style='text-align:center';>
+        <h2><strong>Comments</strong></h2>
+        {% for comment in details.comments.all %}
+            <span>글쓴날짜</span>{{comment.created_date}}<br>
+            <span>글쓴이</span><strong>{{comment.comment_author}}</strong><br>
+            <span>글쓴내용</span><p>{{comment.comment_contents}}</p>
+
+        {% empty %}
+            <p>No comments here yet </p>
+        {% endfor %}
+        <h2><strong>Create Comments</strong></h2>
+        <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="comment_author" placeholder="이름" ><br><br>
+                <textarea name="comment_contents" placeholder="댓글내용"></textarea><br>
+                <button type="submit">등록</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

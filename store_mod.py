@@ -1,7 +1,4 @@
 # coding=utf-8
-import requests
-from django.db import models
-from django.conf import settings
 import os
 import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")

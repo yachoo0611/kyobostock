@@ -11,7 +11,6 @@ import api_engine
 def index(request):
     return render(request, 'search/index.html')
 
-
 def select(request):
 
     t = request.POST.get('title')

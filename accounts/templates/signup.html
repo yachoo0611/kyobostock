@@ -1,0 +1,35 @@
+{% extends "base.html"%}
+{% block title %}
+
+<title>signup</title>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    {% if error %}
+    <script>
+      alert("비밀번호가 틀립니다.")
+    </script>
+    {%endif%}
+    <h1>sign up</h1>
+    <form method="POST" action="{% url 'signup'%}">
+        {% csrf_token %}
+        Username:
+        <br>
+        <input name="username" type="test" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password1" type="password" value="">
+        <br>
+        Confirm Password:
+        <br>
+        <input name="password2" type="password" value="">
+        <br><br>
+        <input type="submit" class="btn btn-primary" value="Sign up">
+    </form>
+</div>
+{% endblock %}
