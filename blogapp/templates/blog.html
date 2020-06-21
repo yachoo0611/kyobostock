@@ -2,20 +2,36 @@
 
 
 {% block content %}
+<form class="form-inline my-2 my-lg-0" action="{% url 'booksearch' %}" method="post">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 
+{% if error %}
+<script>
+      alert("로그인 후 작성하여 주십시오.")
+
+
+
+</script>
+{%endif%}
 {% for blog in blogs.all %}
 <div class="container">
+
     <div class="card">
         <div class="card-body">
             <a href="{% url 'detail' blog.id %}">
                 <h1>{{ blog.title }}</h1>
             </a>
-            <img  src="{{ blog.image.url }}" width="200" height="200">
-            <p>작성자: {{ user.username }}</p>
+            <img src="{{ blog.image.url }}" width="200" height="200">
+            <p>작성자: {{ blog.author }}</p>
             <p>{{ blog.pub_date }}</p>
             <p>{{ blog.body }}</p>
+            {% if blog.author == user %}
             <a href="{% url 'delete' blog.id%}" class="card-link"> 삭제하기 </a>
             <a href="{% url 'update' blog.id%}" class="card-link"> 수정하기 </a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -23,6 +39,76 @@
 <br>
 <br>
 <div class="container">
-    <button type="button" class="btn btn-dark"><a href="{% url 'new' %}"> new post </a>
+    {% if error %}
+    <p style="color:red;">{{error}}</p>
+    {%endif%}
+    <button type="button" class="btn btn-dark"><a href="{% url 'new' %}" style="color:white;"> New post </a>
 </div>
+
+
+<!--<div class="pagination">-->
+<!--    <nav aria-label="Page navigation example" style="margin:auto;">-->
+<!--        <ul class="pagination">-->
+<!--            <a class="page-link" href="?page=1">First</a>-->
+<!--            {% if posts.has_previous %}-->
+<!--            <a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a>-->
+<!--            {% endif %}-->
+<!--            <li class="page-item active"><a class="page-link" href="?page={{posts.number}}">{{posts.number}}</a>-->
+<!--            </li>-->
+<!--            <li class="page-item active"><a class="page-link">of</a></li>-->
+<!--            <li class="page-item active"><a class="page-link" href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>-->
+<!--            </li>-->
+<!--            {% if posts.has_next %}-->
+<!--            <a class="page-link" href="?page={{posts.next_page_number}}">Next</a>-->
+<!--            {% endif %}-->
+<!--            <a class="page-link" href="?page={{posts.paginator.num_pages}}">Last</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+<!--</div>-->
+
+<nav aria-label="Page navigation example" style="margin:auto;">
+    <ul class="pagination justify-content-center">
+        <a class="page-link" href="?page=1">First</a>
+        {% if posts.has_previous %}
+        <a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a>
+        {% endif %}
+        <li class="page-item"><a class="page-link" href="?page={{posts.number}}">{{posts.number}}</a></li>
+        <li class="page-item"><a class="page-link">of</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a>
+        </li>
+        {% if posts.has_next %}
+        <a class="page-link" href="?page={{posts.next_page_number}}">Next</a>
+        {% endif %}
+        <a class="page-link" href="?page={{posts.paginator.num_pages}}">Last</a>
+        </li>
+    </ul>
+</nav>
+
+<!--<div>-->
+<!--  <ul class="pagination">-->
+<!--    <li class="page-item disabled">-->
+<!--      <a class="page-link" href="#">&laquo;</a>-->
+<!--    </li>-->
+<!--    <li class="page-item active">-->
+<!--      <a class="page-link" href="#">1</a>-->
+<!--    </li>-->
+<!--    <li class="page-item">-->
+<!--      <a class="page-link" href="#">2</a>-->
+<!--    </li>-->
+<!--    <li class="page-item">-->
+<!--      <a class="page-link" href="#">3</a>-->
+<!--    </li>-->
+<!--    <li class="page-item">-->
+<!--      <a class="page-link" href="#">4</a>-->
+<!--    </li>-->
+<!--    <li class="page-item">-->
+<!--      <a class="page-link" href="#">5</a>-->
+<!--    </li>-->
+<!--    <li class="page-item">-->
+<!--      <a class="page-link" href="#">&raquo;</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+
 {% endblock%}
