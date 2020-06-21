@@ -12,5 +12,6 @@ urlpatterns = [
     path('blog/delete/<int:blog_id>/', views.delete, name='delete'),
     path('blog/update/<int:blog_id>/', views.update, name='update'),
     path('blog/edit/<int:blog_id>/', views.edit, name='edit'),
+    path('blog/booksearch', views.booksearch, name='booksearch'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
