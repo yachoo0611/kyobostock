@@ -6,5 +6,5 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('result/<int:isbn>/', views.result, name='result'),
     path('select/', views.select, name='select'),
-
+    path('help/', views.help, name='help'),
 ]

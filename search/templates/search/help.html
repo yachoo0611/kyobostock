@@ -1,4 +1,4 @@
-﻿{% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,6 +34,8 @@
 
 
 </head>
+
+
 <body>
 
 
@@ -85,127 +87,36 @@
     </div>
 </div>
 
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">
+</ol>
 
-<div id="wrap" class="container">
-    <div id="main_title" class="title">
-        <br>
-        <h3 style="color:white;">재고 현황:</h3>
-        <p style="color:white;">지점명을 클릭하면 지도에 위치가 나타납니다</p>
-    </div>
-    <ul id="table_wrap" class="in_wrap shadow col-lg-6 col-md-6 col-sm-12">
-        <li id="seoul_wrap" class="stock_wrap row">
-            <div class="title">
-                <h5>수도권</h5>
-            </div>
-            <table id="in_seoul" class="stock_table">
-                <colgroup>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                </colgroup>
-            </table>
-        </li>
-        <li id="notseoul_wrap" class="stock_wrap row">
-            <div class="title">
-                <h5>비수도권</h5>
-            </div>
-            <table id="not_seoul" class="stock_table">
-                <colgroup>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                </colgroup>
-            </table>
-        </li>
-    </ul>
-    <div id="map_wrap" class="in_wrap col-lg-6 col-md-6 col-sm-12">
-        <div id="map"></div>
-    </div>
+<div class="card mb-3" style="border: 1px solid white; float: left; width: 50%; height: 130%; ">
+<img style="width:200px;height:200px;margin:auto;"src="{% static 'image/yachoo.jpg'%}">
+<div class="alert alert-dismissible alert-success"style="TEXT-ALIGN:center">
+
+  <strong >김예찬</strong>
+    <br>
+  <strong>명지Univ. 정보통신공학과 14학번</strong>
+  <br><strong>dpcksdl3@naver.com</strong>
 </div>
-<script type="text/javascript">
-if (navigator.geolocation) {
 
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
+</div>
+<div class="card mb-3" style="border: 1px solid white; float: left; width: 50%; height: 130%; ">
+ <img style="width:200px;height:200px;margin:auto;" src="{% static 'image/do.jpg'%}">
+    <div class="alert alert-dismissible alert-info"style="TEXT-ALIGN:center">
 
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
+    <strong>최진황</strong><br>
+<strong>명지Univ. 정보통신공학과 14학번</strong>
+  <br><strong>chjh2425@naver.com</strong>
+</div>
+</div>
 
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:10px;"> 현 위 치 </div>'; // 인포윈도우에 표시될 내용입니다
-
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-
-      });
-
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-        message = 'geolocation을 사용할수 없어요..'
-
-    displayMarker(locPosition, message);
-}
-
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map,
-        position: locPosition
-    });
-
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    });
-
-    // 인포윈도우를 마커위에 표시합니다
-    infowindow.open(map, marker);
-
-    // 지도 중심좌표를 접속위치로 변경합니다
-    map.setCenter(locPosition);
-}
-
-        var seoul = {{ in_seoul| safe }}; // 수도권 지점 정보 받아오기
-        var not_seoul = {{ not_seoul| safe }}; // 비수도권 지점 정보 받아오기
-
-        $(document).ready(function () {
-            drawTable(seoul, "#in_seoul");
-            drawTable(not_seoul, "#not_seoul");
-            // resize 이벤트가 발생할때마다 in_wrap의 높이를 동일하게 조절
-            $(window).resize(resizeContents);
-            resizeContents();
-        });
-
-
-
-</script>
 <script src="{% static 'blog/bootstrap//jquery.min.js'%}"></script>
 <script src="{% static 'blog/bootstrap/popper.min.js'%}"></script>
 <script src="{% static 'blog/bootstrap/bootstrap.min.js'%}"></script>
 <script src="{% static 'blog/_assets/js/custom.js' %}"></script>
 
-
-<script type="text/javascript"
-        src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=f811310a5ce7f906d6d12cb711c52565"></script>
-<script type="text/javascript" src="{% static 'js/func.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/map.js' %}"></script>
 
 
 </body>
