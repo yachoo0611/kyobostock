@@ -2,12 +2,13 @@
 
 
 {% block content %}
+<div class="container">
 <form class="form-inline my-2 my-lg-0" action="{% url 'booksearch' %}" method="post">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button><br><br>
 </form>
-
+</div>
 {% if error %}
 <script>
       alert("로그인 후 작성하여 주십시오.")
