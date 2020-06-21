@@ -21,13 +21,26 @@
         }
 
 </style>
+
+<div class="card mb-3" style="TEXT-ALIGN: center; border: 1px solid white; float: left; width: 20%; height: 130%; ">
+    <strong style="">1위</strong>
+</div>
+<div class="card mb-3" style="TEXT-ALIGN: center;border: 1px solid white; float: left; width: 20%; height: 130%; ">
+<strong>2위</strong>
+</div>
+<div class="card mb-3" style="TEXT-ALIGN: center; border: 1px solid white; float: left; width: 20%; height: 130%; ">
+<strong>3위</strong>
+</div>
+<div class="card mb-3" style="TEXT-ALIGN: center; border: 1px solid white; float: left; width: 20%; height: 130%; ">
+<strong>4위</strong>
+</div>
+<div class="card mb-3" style="TEXT-ALIGN: center; border: 1px solid white; float: left; width: 20%; height: 130%; ">
+<strong>5위</strong>
+</div>
+<body>
 {% endblock %}
 
 {% block content %}
-<ol class="breadcrumb">
-    <li class="breadcrumb-item active">
-</ol>
-
 
 {% for book in b %}
 
@@ -64,10 +77,12 @@
 {% endfor %}
 
 {% endblock %}
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">
+</ol>
 
 {% block script %}
-
+</body>
 <script src="{% static 'blog/bootstrap//jquery.min.js'%}"></script>
 <script src="{% static 'blog/bootstrap/popper.min.js'%}"></script>
 <script src="{% static 'blog/bootstrap/bootstrap.min.js'%}"></script>
